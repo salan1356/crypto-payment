@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Payment</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('https://cryptologos.cc/logos/tether-usdt-logo.png') no-repeat center center fixed;
+            background-size: cover;
+            backdrop-filter: blur(5px);
+            color: white;
+        }
+        #qrcode-container {
+            border: 3px solid white;
+            padding: 20px;
+            display: inline-block;
+            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+        }
+        #qrcode { margin: auto; }
+        .wallet-info {
+            font-size: 18px;
+            margin: 10px 0;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="qrcode-container">
+        <div id="qrcode"></div>
+    </div>
+    <p class="wallet-info">Wallet Address: <strong id="wallet-address"></strong></p>
+    <p class="wallet-info">Amount: <strong id="amount"></strong> USDT</p>
+    
+    <script>
+        // تنظیمات پرداخت
+        const walletAddress = "TJaXzTztGovxhp4tuy9wYEVwEMek5ueQbs"; // آدرس والت خود را اینجا بگذارید
+        const amount = "185"; // مبلغ موردنظر را تغییر دهید
+        const cryptoUri = `tron:${walletAddress}?amount=${amount}`;
+        
+        // نمایش اطلاعات در صفحه
+        document.getElementById("wallet-address").innerText = walletAddress;
+        document.getElementById("amount").innerText = amount;
+        
+        // ایجاد QR Code با مقدار مشخص‌شده
+        new QRCode(document.getElementById("qrcode"), {
+            text: cryptoUri,
+            width: 200,
+            height: 200
+        });
+    </script>
+</body>
+</html>
